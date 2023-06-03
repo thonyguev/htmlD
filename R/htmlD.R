@@ -13,10 +13,10 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 #` @export
-library(reticulate)
-library(rvest)
 
 load_url <- function(url){
+  library(reticulate)
+  library(rvest)
   # Python
   is_python <- py_available()
   python_version <- "3.11.3"
