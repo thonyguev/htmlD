@@ -41,11 +41,13 @@ load_url <- function(url){
   }
 
   selenium <- import("selenium",convert = TRUE)
-  driver <- selenium$webdriver$Chrome("./chromedriver_win32/chromedriver.exe")
+  #path_driver <- py_run_string("import os\nprint(os.getcwd())")
+  location <- ".\\chromedriver_win32\\chromedriver.exe"
+  driver <- selenium$webdriver$Chrome(location)
   driver$get(url)
   content <- read_html(driver$page_source)
   driver$close()
   return(content)
 }
 
-#print(load_url("https://r-pkgs.org/setup.html"))
+print(load_url("https://r-pkgs.org/setup.html"))
