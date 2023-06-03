@@ -12,8 +12,10 @@
 #   Install Package:           'Ctrl + Shift + B'
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
-#` @export
 
+#` @param url string
+#` @return page html
+#` @export
 load_url <- function(url){
   library(reticulate)
   library(rvest)
