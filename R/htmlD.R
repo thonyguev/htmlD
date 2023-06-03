@@ -16,28 +16,28 @@
 library(reticulate)
 library(rvest)
 
-# Python
-is_python <- py_available()
-python_version <- "3.11.3"
-if(is_python == FALSE){
-  install_python(python_version)
-}
-
-# VirtualEnv
-vname <- "rsl"
-is_virtualenv <- virtualenv_exists(vname)
-if(is_virtualenv == FALSE){
-  virtualenv_create(vname,version = python_version)
-}
-use_virtualenv(vname)
-
-# Selenium
-is_selenium <- py_module_available("selenium")
-if(is_selenium == FALSE){
-  py_install("selenium")
-}
-
 load_url <- function(url){
+  # Python
+  is_python <- py_available()
+  python_version <- "3.11.3"
+  if(is_python == FALSE){
+    install_python(python_version)
+  }
+
+  # VirtualEnv
+  vname <- "rsl"
+  is_virtualenv <- virtualenv_exists(vname)
+  if(is_virtualenv == FALSE){
+    virtualenv_create(vname,version = python_version)
+  }
+  use_virtualenv(vname)
+
+  # Selenium
+  is_selenium <- py_module_available("selenium")
+  if(is_selenium == FALSE){
+    py_install("selenium")
+  }
+
   selenium <- import("selenium",convert = TRUE)
   driver <- selenium$webdriver$Chrome("./chromedriver_win32/chromedriver.exe")
   driver$get(url)
