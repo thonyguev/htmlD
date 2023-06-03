@@ -1,2 +1,2 @@
 #exportPattern("^[[:alpha:]]+")
-export(htmlD)
+export(load_url)
