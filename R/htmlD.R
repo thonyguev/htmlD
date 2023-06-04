@@ -13,12 +13,14 @@
 #   Check Package:             'Ctrl + Shift + E'
 #   Test Package:              'Ctrl + Shift + T'
 
+library(reticulate)
+library(rvest)
 #` @param url string
 #` @return page html
 #` @export
 load_url <- function(url){
-  library(reticulate)
-  library(rvest)
+  #library(reticulate)
+  #library(rvest)
   # Python
   is_python <- py_available()
   python_version <- "3.11.3"
@@ -41,13 +43,12 @@ load_url <- function(url){
   }
 
   selenium <- import("selenium",convert = TRUE)
-  #path_driver <- py_run_string("import os\nprint(os.getcwd())")
-  location <- ".\\chromedriver_win32\\chromedriver.exe"
-  driver <- selenium$webdriver$Chrome(location)
+  location_driver <- ".\\chromedriver_win32\\chromedriver.exe"
+  driver <- selenium$webdriver$Chrome(location_driver)
   driver$get(url)
   content <- read_html(driver$page_source)
   driver$close()
   return(content)
 }
 
-print(load_url("https://r-pkgs.org/setup.html"))
+#print(load_url("https://r-pkgs.org/setup.html"))
